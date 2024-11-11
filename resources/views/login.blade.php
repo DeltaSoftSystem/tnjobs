@@ -1,31 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Login Page</title>
-</head>
+@section('title')
+    Login Page
+@endsection
 
-<body>
-    <div class="container" style="height: 100vh">
-        <div class="mt-5 d-flex">
-            <form class="row">
-                <div class="col-12">
-                    <label for="name">Candidate Name - As per Aadhar Card </label>
-                    <input type="text" name="name" id="name" class="form-control"
-                        placeholder="[Format – First Name,Middle Name,Last Name]">
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 m-auto mt-5">
+                @if (session('status'))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>{{ session('status') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                <div class="card">
+                    <div class="card-header text-white bg-danger">
+                        <span>Login Page</span>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('login') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Candidate Name:</label>
+                                <input name="candidate_name" type="text" class="form-control"
+                                    id="exampleFormControlInput1" placeholder="Enter Mobile Number">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                <input name="password" type="password" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Enter Password">
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-danger mx-auto">Login</button>
+                            </div>
+                            <div class="text-center mt-3">
+                                <span class="text-capitalize ">New to T.N Jobs? <a href="{{ route('registerpage') }}"
+                                        class="text-danger">Register Now</a></span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
-
     </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
-
-</html>
+@endsection
