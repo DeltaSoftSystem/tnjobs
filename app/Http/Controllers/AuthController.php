@@ -28,6 +28,7 @@ class AuthController extends Controller
             'email_id' => 'required|string|email|unique:users,email_id',
             'password' => 'required|string|min:8',
             'post_name' => 'required|string',
+            'captcha' => 'required|captcha',
         ]);
 
         $emailOtp = rand(100000, 999999);
@@ -117,6 +118,7 @@ class AuthController extends Controller
         $request->validate([
             'candidate_name' => 'required|string',
             'password' => 'required|string',
+            'captcha' => 'required|captcha',
         ]);
 
         if (Auth::attempt(['candidate_name' => $request->candidate_name, 'password' => $request->password])) {
