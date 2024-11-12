@@ -24,13 +24,29 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Candidate Name:</label>
                                 <input name="candidate_name" type="text" class="form-control"
-                                    id="exampleFormControlInput1" placeholder="Enter Mobile Number">
+                                    id="exampleFormControlInput1" placeholder="Enter Candidate Name">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Password</label>
                                 <input name="password" type="password" class="form-control" id="exampleFormControlInput1"
                                     placeholder="Enter Password">
                             </div>
+
+
+                            <div class="mb-3 col-12">
+                                <label for="captcha" class="form-label">Enter CAPTCHA:</label>
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ captcha_src() }}" id="captcha-image" alt="CAPTCHA Image" class="mr-2">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-secondary" onclick="refreshCaptcha()"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+                                </div>
+                                <input type="text" name="captcha" class="form-control mt-2" placeholder="Enter CAPTCHA">
+                                @error('captcha')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+
+                            
                             <div class="d-flex">
                                 <button class="btn btn-danger mx-auto">Login</button>
                             </div>

@@ -25,7 +25,7 @@
                             @csrf
                             <div class="mb-3 col-12">
                                 <label for="exampleFormControlInput1" class="form-label">Post Name:</label>
-                                <select name="post_name" id="exampleFormControlInput1" class="form-control">
+                                <select name="post_name" id="exampleFormControlInput1" class="form-control" required>
                                     <option value="">Select the Post</option>
                                     @foreach ($positions as $position)
                                         <option value="{{$position->post_name}}">{{$position->post_name}}</option>
@@ -44,7 +44,7 @@
                                     Card:</label>
                                 <input name="candidate_name" type="text" value="{{old('candidate_name')}}" class="form-control"
                                     id="exampleFormControlInput2"
-                                    placeholder="Enter Name - Format (First Name) (Middle Name) (Last Name)">
+                                    placeholder="Enter Name - Format (First Name) (Middle Name) (Last Name)" required>
                                 @if ($errors->any())
                                     <p class="text-danger">
                                         @error('candidate_name')
@@ -68,7 +68,7 @@
                             <div class="mb-3 col-6">
                                 <label for="exampleFormControlInput4" class="form-label">Mobile No:</label>
                                 <input name="mobile_no" type="number" value="{{old('mobile_no')}}" class="form-control" id="exampleFormControlInput4"
-                                    placeholder="Enter Mobile Number">
+                                    placeholder="Enter Mobile Number" required>
                                 @if ($errors->any())
                                     <p class="text-danger">
                                         @error('mobile_no')
@@ -80,7 +80,7 @@
                             <div class="mb-3 col-6">
                                 <label for="exampleFormControlInput6" class="form-label">Email Id:</label>
                                 <input name="email_id" type="email" value="{{old('email_id')}}" class="form-control" id="exampleFormControlInput6"
-                                    placeholder="Enter Email Id">
+                                    placeholder="Enter Email Id" required>
                                 @if ($errors->any())
                                     <p class="text-danger">
                                         @error('email_id')
@@ -92,7 +92,7 @@
                             <div class="mb-3 col-6">
                                 <label for="exampleFormControlInput5" class="form-label">Password</label>
                                 <input name="password" type="password" class="form-control" id="exampleFormControlInput5"
-                                    placeholder="Enter Password">
+                                    placeholder="Enter Password" required>
                                 @if ($errors->any())
                                     <p class="text-danger">
                                         @error('password')
@@ -101,6 +101,25 @@
                                     </p>
                                 @endif
                             </div>
+
+
+
+
+                            <div class="mb-3 col-12">
+                                <label for="captcha" class="form-label">Enter CAPTCHA:</label>
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ captcha_src() }}" id="captcha-image" alt="CAPTCHA Image" class="mr-2">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-secondary" onclick="refreshCaptcha()"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+                                </div>
+                                <input type="text" name="captcha" class="form-control mt-2" placeholder="Enter CAPTCHA">
+                                @error('captcha')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+
+
+
                             <div class="d-flex">
                                 <button class="btn btn-danger mx-auto">Register</button>
                             </div>
@@ -114,4 +133,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function refreshCaptcha() {
+            document.getElementById('captcha-image').src = '{{ captcha_src() }}' + '?' + Math.random();
+        }
+    </script>
 @endsection
