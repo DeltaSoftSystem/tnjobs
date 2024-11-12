@@ -34,7 +34,7 @@
                                     and submit the same as per instructions given.
                                 </div>
                                 <div class="text-center mt-3">
-                                    <a href="" class="btn btn-primary px-5 fs-5 fw-normal mb-1">Countinue</a>
+                                    <a href="{{ route('description2') }}" class="btn btn-primary px-5 fs-5 fw-normal mb-1">Countinue</a>
                                     <p class="m-0 p-0 fw-semibold">For any query mail on <a
                                             href="mailto:tnjobs@tnmhr.com">tnjobs@tnmhr.com</a></p>
                                     <p class="fw-semibold">(10:00 AM to 6:00 PM on working days.)</p>
